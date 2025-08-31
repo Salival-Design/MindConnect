@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
-import { Lock, Send } from "lucide-react";
 
 interface ChatMessage {
   id: string;
@@ -133,7 +132,7 @@ export function ChatPanel({
                       {format(new Date(message.timestamp), "h:mm a")}
                     </span>
                     <div className="flex items-center space-x-1">
-                      <Lock className="w-3 h-3 text-accent" />
+                      <i className="fas fa-lock text-accent text-xs" />
                       <span className="text-xs text-accent">Encrypted</span>
                     </div>
                   </div>
@@ -174,13 +173,13 @@ export function ChatPanel({
             data-testid="button-send-message"
             aria-label="Send Message"
           >
-            <Send className="w-4 h-4" />
+            <i className="fas fa-paper-plane" />
           </Button>
         </div>
 
         {/* Security Notice */}
         <div className="flex items-center space-x-2 mt-2 text-xs text-muted-foreground">
-          <Lock className="w-3 h-3 text-accent" />
+          <i className="fas fa-lock text-accent" />
           <span>Messages are encrypted and stored securely per HIPAA requirements</span>
         </div>
       </div>
