@@ -1,0 +1,180 @@
+Healthcare Video Consultation Platform - Detailed Technical Overview
+Project Summary
+MindConnect is a modern, HIPAA-compliant telemedicine platform designed for psychology and mental health consultations in Queensland, Australia. It provides secure video conferencing with real-time chat, session management, and professional healthcare workflows.
+
+Core Technology Stack
+Frontend Architecture
+Framework: React 18 with TypeScript
+Build Tool: Vite with hot module replacement
+Routing: React Router DOM for page navigation
+State Management: TanStack Query v5 for server state and caching
+UI Framework: shadcn/ui components built on Radix UI primitives
+Styling: Tailwind CSS with custom healthcare color palette
+Real-time: WebRTC for video calls + WebSocket for chat messaging
+Backend Architecture
+Runtime: Node.js with Express.js framework
+Language: TypeScript with ES modules
+Real-time: WebSocket server for chat and session coordination
+Database: PostgreSQL with Drizzle ORM and Neon Database
+External Services: Twilio TURN servers for WebRTC connectivity
+Database Schema
+Core Tables
+// Users table
+users: {
+  id: varchar (UUID, primary key)
+  username: text (unique)
+  email: text (unique) 
+  fullName: text
+  role: text (patient/therapist/admin)
+  isActive: boolean
+  createdAt: timestamp
+}
+// Sessions table
+sessions: {
+  id: varchar (UUID, primary key)
+  roomId: text (unique)
+  patientId: varchar (references users.id)
+  therapistId: varchar (references users.id)
+  status: text (scheduled/active/completed/cancelled)
+  startTime: timestamp
+  endTime: timestamp
+  duration: text
+  notes: text
+  createdAt: timestamp
+}
+// Chat Messages table
+chatMessages: {
+  id: varchar (UUID, primary key)
+  sessionId: varchar (references sessions.id)
+  senderId: varchar (references users.id)
+  message: text
+  timestamp: timestamp
+}
+Key Features & Implementation
+1. Video Conferencing System
+WebRTC Integration: Custom useWebRTC hook manages peer-to-peer connections
+Media Controls: Toggle video/audio, screen sharing with track replacement
+ICE Servers: Twilio TURN servers for reliable NAT traversal
+Connection Quality: Real-time connection status with visual indicators
+2. Real-time Chat System
+WebSocket Connection: Custom useWebSocket hook with auto-reconnection
+Message Broadcasting: Server broadcasts to all room participants
+Message Persistence: Chat messages stored in database
+Professional UI: Healthcare-themed chat interface with role-based styling
+3. Session Management
+Room Creation: Unique room IDs with session metadata
+User Roles: Therapist and patient role-based access
+Session Tracking: Duration, status, and participant management
+Demo Functionality: Quick demo room creation for testing
+4. Security & Compliance Features
+End-to-End Encryption: Visual indicators for secure sessions
+HIPAA-Compliant Design: Professional medical interface patterns
+Secure WebSocket: Authentication and room-based access control
+Crisis Support: 24/7 emergency contact integration
+Project Structure
+healthcare-platform/
+├── client/src/
+│   ├── components/
+│   │   ├── ui/ (shadcn components)
+│   │   ├── video-room.tsx (main video interface)
+│   │   ├── video-controls.tsx (media controls)
+│   │   ├── chat-panel.tsx (messaging interface)
+│   │   └── session-sidebar.tsx (tabbed sidebar)
+│   ├── hooks/
+│   │   ├── use-webrtc.tsx (WebRTC management)
+│   │   └── use-websocket.tsx (real-time communication)
+│   ├── pages/
+│   │   ├── home.tsx (landing page)
+│   │   ├── consultation-room.tsx (video session)
+│   │   └── dashboard.tsx (user dashboard)
+│   ├── lib/
+│   │   └── queryClient.ts (TanStack Query config)
+│   └── App.tsx (routing & providers)
+├── server/
+│   ├── index.ts (Express server setup)
+│   ├── routes.ts (API endpoints + WebSocket)
+│   ├── storage.ts (data access layer)
+│   ├── twilio-service.ts (TURN server config)
+│   └── db.ts (Drizzle database connection)
+├── shared/
+│   └── schema.ts (Drizzle schemas & types)
+└── Configuration files (vite, tailwind, drizzle)
+API Endpoints
+REST API
+POST /api/sessions - Create new consultation session
+GET /api/sessions/room/:roomId - Get session by room ID
+PATCH /api/sessions/:id - Update session status
+GET /api/users/:userId/sessions - Get user's sessions
+GET /api/sessions/:sessionId/messages - Get chat history
+GET /api/ice-servers - Get Twilio TURN servers for WebRTC
+POST /api/demo-room - Create demo consultation room
+WebSocket Events
+join-room - Join consultation room
+webrtc-offer/answer/ice-candidate - WebRTC signaling
+chat-message - Send/receive chat messages
+user-joined/left - Room participant events
+Environment Configuration
+Required Environment Variables
+DATABASE_URL=postgresql://...
+TWILIO_ACCOUNT_SID=your_twilio_sid
+TWILIO_AUTH_TOKEN=your_twilio_token
+NODE_ENV=development
+PORT=5000
+Development Setup
+npm install
+npm run db:push  # Deploy database schema
+npm run dev      # Start development server
+Healthcare-Specific Design Elements
+Color Palette
+Primary: Professional blue (#2B5A87) - trust and reliability
+Accent: Calming green (#28A745) - positive health outcomes
+Destructive: Medical red (#DC3545) - emergency/alerts
+Background: Clean white with soft gray accents
+UI Components
+Professional Header: Brand identity with secure connection indicators
+Video Grid: Split-screen layout with participant overlays
+Control Panel: Large, accessible media controls with visual feedback
+Chat Interface: Role-based message styling with encryption indicators
+Session Info: Real-time duration, participant details, and status
+Accessibility Features
+Large Controls: 48px touch targets for media controls
+Visual Feedback: Clear state indicators for all interactive elements
+Screen Reader Support: Proper ARIA labels and semantic HTML
+Emergency Access: Prominent crisis support button
+Connection Status: Real-time connectivity feedback
+Recreation Instructions
+1. Initialize Project
+npm create vite@latest healthcare-platform --template react-ts
+cd healthcare-platform
+2. Install Dependencies
+npm install express ws simple-peer @tanstack/react-query
+npm install react-router-dom wouter @hookform/resolvers
+npm install drizzle-orm drizzle-kit @neondatabase/serverless
+npm install @radix-ui/react-* shadcn/ui
+npm install tailwindcss @tailwindcss/typography
+npm install twilio zod drizzle-zod
+3. Setup Database
+Provision PostgreSQL database (Neon recommended)
+Configure Drizzle ORM with schema
+Run npm run db:push to deploy tables
+4. Configure External Services
+Create Twilio account for TURN servers
+Set up environment variables for database and Twilio
+5. Implement Core Features
+Set up Express server with WebSocket support
+Create React frontend with video conferencing
+Implement WebRTC hooks for media management
+Build chat system with real-time messaging
+Design healthcare-focused UI components
+6. Security & Compliance
+Implement role-based access control
+Add encryption indicators and security messaging
+Set up HIPAA-compliant session handling
+Include emergency support features
+Development Workflow
+Backend First: Define schemas and API endpoints
+Frontend Integration: Build React components consuming APIs
+Real-time Features: Add WebSocket and WebRTC functionality
+UI Polish: Apply healthcare design system
+Testing: Verify video calls and chat messaging work
+This platform demonstrates production-ready telemedicine architecture with secure video conferencing, professional healthcare UI, and comprehensive session management suitable for mental health consultations.
