@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
+import { Brain, CalendarPlus, Phone, FileText, CalendarX } from "lucide-react";
 
 export default function Dashboard() {
   // For demo purposes, using static user ID
@@ -20,7 +21,7 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <i className="fas fa-brain text-white text-sm" />
+              <Brain className="w-4 h-4 text-white" />
             </div>
             <span className="font-bold text-xl text-foreground">MindConnect</span>
           </div>
@@ -51,7 +52,7 @@ export default function Dashboard() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <i className="fas fa-calendar-plus text-primary" />
+                <CalendarPlus className="w-4 h-4 text-primary" />
                 <span>Schedule Session</span>
               </CardTitle>
               <CardDescription>
@@ -68,7 +69,7 @@ export default function Dashboard() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <i className="fas fa-phone text-secondary" />
+                <Phone className="w-4 h-4 text-secondary" />
                 <span>Emergency Support</span>
               </CardTitle>
               <CardDescription>
@@ -77,7 +78,7 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <Button variant="outline" className="w-full border-destructive text-destructive hover:bg-destructive hover:text-white" data-testid="button-emergency-support">
-                <i className="fas fa-phone-alt mr-2" />
+                <Phone className="w-4 h-4 mr-2" />
                 Crisis Helpline
               </Button>
             </CardContent>
@@ -86,7 +87,7 @@ export default function Dashboard() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <i className="fas fa-file-medical text-accent" />
+                <FileText className="w-4 h-4 text-accent" />
                 <span>Health Records</span>
               </CardTitle>
               <CardDescription>
@@ -117,7 +118,7 @@ export default function Dashboard() {
               </div>
             ) : sessions.length === 0 ? (
               <div className="text-center py-8" data-testid="empty-sessions">
-                <i className="fas fa-calendar-times text-muted-foreground text-4xl mb-4" />
+                <CalendarX className="w-16 h-16 text-muted-foreground mb-4" />
                 <p className="text-muted-foreground">No consultation sessions yet</p>
                 <p className="text-sm text-muted-foreground mt-2">
                   Schedule your first session to get started

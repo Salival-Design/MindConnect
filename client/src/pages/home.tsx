@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { Brain, LogIn, Play, Shield, Video, UserCheck } from "lucide-react";
 
 export default function Home() {
   const [roomId, setRoomId] = useState("");
@@ -42,7 +43,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <i className="fas fa-brain text-white text-sm" />
+              <Brain className="w-4 h-4 text-white" />
             </div>
             <span className="font-bold text-xl text-foreground">MindConnect</span>
           </div>
@@ -75,7 +76,7 @@ export default function Home() {
           <Card className="p-6">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <i className="fas fa-sign-in-alt text-primary" />
+                <LogIn className="w-4 h-4 text-primary" />
                 <span>Join Session</span>
               </CardTitle>
               <CardDescription>
@@ -108,7 +109,7 @@ export default function Home() {
           <Card className="p-6">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <i className="fas fa-play text-secondary" />
+                <Play className="w-4 h-4 text-secondary" />
                 <span>Demo Session</span>
               </CardTitle>
               <CardDescription>
@@ -153,7 +154,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i className="fas fa-shield-alt text-primary text-2xl" />
+                <Shield className="w-8 h-8 text-primary" />
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-2">HIPAA Compliant</h3>
               <p className="text-muted-foreground">
@@ -163,7 +164,7 @@ export default function Home() {
 
             <div className="text-center">
               <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i className="fas fa-video text-secondary text-2xl" />
+                <Video className="w-8 h-8 text-secondary" />
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-2">HD Video Quality</h3>
               <p className="text-muted-foreground">
@@ -173,7 +174,7 @@ export default function Home() {
 
             <div className="text-center">
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i className="fas fa-user-md text-accent text-2xl" />
+                <UserCheck className="w-8 h-8 text-accent" />
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-2">Licensed Professionals</h3>
               <p className="text-muted-foreground">

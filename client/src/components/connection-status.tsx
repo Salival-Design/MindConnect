@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { Brain, Phone, MoreVertical, Copy } from "lucide-react";
 
 interface ConnectionStatusProps {
   sessionDuration: string;
@@ -49,7 +50,7 @@ export function ConnectionStatus({
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <i className="fas fa-brain text-white text-sm" />
+              <Brain className="w-4 h-4 text-white" />
             </div>
             <span className="font-bold text-xl text-foreground">MindConnect</span>
           </div>
@@ -82,7 +83,7 @@ export function ConnectionStatus({
             className="bg-destructive text-destructive-foreground px-4 py-2 rounded-lg font-medium hover:bg-destructive/90 transition-colors min-w-12 min-h-12"
             data-testid="button-emergency-support"
           >
-            <i className="fas fa-phone-alt mr-2" />
+            <Phone className="w-4 h-4 mr-2" />
             Crisis Support
           </Button>
 
@@ -93,7 +94,7 @@ export function ConnectionStatus({
             className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors min-w-12 min-h-12"
             data-testid="button-menu"
           >
-            <i className="fas fa-ellipsis-v" />
+            <MoreVertical className="w-4 h-4" />
           </Button>
         </div>
       </header>
@@ -122,7 +123,7 @@ export function ConnectionStatus({
             className="text-white/80 hover:text-white transition-colors p-1"
             data-testid="button-copy-room-id"
           >
-            <i className="fas fa-copy mr-1" />
+            <Copy className="w-3 h-3 mr-1" />
             Copy
           </Button>
         </div>

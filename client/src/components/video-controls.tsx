@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { Mic, MicOff, Video, VideoOff, Monitor, MessageCircle, Settings, PhoneOff } from "lucide-react";
 
 interface VideoControlsProps {
   isVideoEnabled: boolean;
@@ -50,7 +51,7 @@ export function VideoControls({
             data-testid="button-toggle-microphone"
             aria-label="Toggle Microphone"
           >
-            <i className={`fas ${isAudioEnabled ? "fa-microphone" : "fa-microphone-slash"} text-lg`} />
+            {isAudioEnabled ? <Mic className="w-5 h-5" /> : <MicOff className="w-5 h-5" />}
           </Button>
 
           {/* Video Toggle */}
@@ -65,7 +66,7 @@ export function VideoControls({
             data-testid="button-toggle-video"
             aria-label="Toggle Video"
           >
-            <i className={`fas ${isVideoEnabled ? "fa-video" : "fa-video-slash"} text-lg`} />
+            {isVideoEnabled ? <Video className="w-5 h-5" /> : <VideoOff className="w-5 h-5" />}
           </Button>
 
           {/* Screen Share */}
@@ -76,7 +77,7 @@ export function VideoControls({
             data-testid="button-share-screen"
             aria-label="Share Screen"
           >
-            <i className="fas fa-desktop text-lg" />
+            <Monitor className="w-5 h-5" />
           </Button>
 
           {/* Chat Toggle */}
@@ -87,7 +88,7 @@ export function VideoControls({
             data-testid="button-toggle-chat"
             aria-label="Toggle Chat"
           >
-            <i className="fas fa-comments text-lg" />
+            <MessageCircle className="w-5 h-5" />
             {unreadMessages > 0 && (
               <div className="absolute -top-1 -right-1 w-5 h-5 bg-destructive text-white text-xs rounded-full flex items-center justify-center" data-testid="chat-unread-count">
                 {unreadMessages}
@@ -102,7 +103,7 @@ export function VideoControls({
             data-testid="button-settings"
             aria-label="Settings"
           >
-            <i className="fas fa-cog text-lg" />
+            <Settings className="w-5 h-5" />
           </Button>
 
           {/* End Call */}
@@ -113,7 +114,7 @@ export function VideoControls({
             data-testid="button-end-call"
             aria-label="End Call"
           >
-            <i className="fas fa-phone-slash text-lg" />
+            <PhoneOff className="w-5 h-5" />
           </Button>
         </div>
       </div>

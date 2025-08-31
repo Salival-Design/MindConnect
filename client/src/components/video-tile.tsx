@@ -1,3 +1,5 @@
+import { Mic, MicOff, Video, VideoOff } from "lucide-react";
+
 interface VideoTileProps {
   name: string;
   role: "patient" | "therapist";
@@ -83,7 +85,7 @@ export function VideoTile({
               }`}
               data-testid={`audio-status-${role}`}
             >
-              <i className={`fas ${isAudioEnabled ? "fa-microphone" : "fa-microphone-slash"} text-white text-xs`} />
+              {isAudioEnabled ? <Mic className="w-3 h-3 text-white" /> : <MicOff className="w-3 h-3 text-white" />}
             </div>
             <div 
               className={`w-8 h-8 rounded-full flex items-center justify-center ${
@@ -91,7 +93,7 @@ export function VideoTile({
               }`}
               data-testid={`video-status-${role}`}
             >
-              <i className={`fas ${isVideoEnabled ? "fa-video" : "fa-video-slash"} text-white text-xs`} />
+              {isVideoEnabled ? <Video className="w-3 h-3 text-white" /> : <VideoOff className="w-3 h-3 text-white" />}
             </div>
           </div>
         </div>
